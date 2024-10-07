@@ -5,7 +5,12 @@ export class FindProductUserCase {
 
   constructor(private readonly productRepository: ProductRepositoryInterface) { }
 
-  execute(input: InputFindProductDTO): Promise<OutputFindProductDTO> {
-    return this.productRepository.find(input.id)
+  async execute(input: InputFindProductDTO): Promise<OutputFindProductDTO> {
+    const product = await this.productRepository.find(input.id)
+    return {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+    }
   }
 }

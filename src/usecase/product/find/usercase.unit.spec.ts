@@ -17,6 +17,10 @@ describe("Unit test for find product", () => {
     const userCase = new FindProductUserCase(repository)
     const output = await userCase.execute({ id: MockProduct.id })
 
-    expect(output).toBe(MockProduct)
+    expect(output).toEqual({
+      id: MockProduct.id,
+      name: MockProduct.name,
+      price: MockProduct.price,
+    })
   })
 })
